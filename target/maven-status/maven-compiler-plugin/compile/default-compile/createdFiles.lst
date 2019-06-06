@@ -1,0 +1,17 @@
+com\att\demo\model\representation\CollectionLinks.class
+com\att\demo\config\JerseyConfiguration.class
+com\att\demo\DemoApp.class
+com\att\demo\model\representation\Links.class
+com\att\demo\resource\UserResourceImpl.class
+com\att\demo\exception\CustomError.class
+com\att\demo\model\swagger\AccountResponse.class
+com\att\demo\model\Account.class
+com\att\demo\model\representation\Resource.class
+com\att\demo\service\AccountService.class
+com\att\demo\resource\AccountResource.class
+com\att\demo\resource\UserResource.class
+com\att\demo\model\representation\Pagination.class
+com\att\demo\model\representation\ResourceCollection.class
+com\att\demo\resource\AccountResourceImpl.class
+com\att\demo\model\User.class
+com\att\demo\service\AccountServiceImpl.class

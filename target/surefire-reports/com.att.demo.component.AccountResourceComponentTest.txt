@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.att.demo.component.AccountResourceComponentTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.44 sec - in com.att.demo.component.AccountResourceComponentTest
