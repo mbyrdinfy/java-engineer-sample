@@ -6,7 +6,5 @@ package com.att.demo.resource;
  * 
  */
 public interface UserResource {
-	
-   
-	
+
 }

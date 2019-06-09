@@ -38,7 +38,13 @@ public interface AccountResource {
      * 
      * @return User - Returns the details of the accounts being searched
      */
+
+	public Response getAccount(@PathParam("AccountID") long AccountID);
+	
+	public Response createAccount(Account account);
+	
 	@GET
+	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@ApiOperation(
@@ -51,6 +57,21 @@ public interface AccountResource {
 					@ApiResponse(code = 204, message = "No Content")					
 					})
 	public Response findAllAccounts();
+	
+	
+//	@POST
+//	@Produces({MediaType.APPLICATION_JSON})
+//	@Consumes({MediaType.APPLICATION_JSON})
+//	@ApiOperation(
+//			value = "Create new Account",
+//			notes = "Returns the account that is given and created",
+//			response = AccountResponse.class)
+//	@ApiResponses(
+//			value = {
+//					@ApiResponse(code = 201, message = "Created"),
+//					@ApiResponse(code = 409, message = "Unable to create. An Account with given name already exist")					
+//					})
+//	public Response createAccount();
 	
 
 	

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import com.att.demo.resource.AccountGetResource;
 import com.att.demo.resource.AccountResourceImpl;
 import com.att.demo.resource.UserResourceImpl;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -67,6 +68,7 @@ public class JerseyConfiguration extends ResourceConfig {
 	@Autowired
     public JerseyConfiguration() {
 		register(AccountResourceImpl.class);	
+		register(AccountGetResource.class);
 		
     }
 	
