@@ -39,8 +39,10 @@ public interface AccountResource {
      * @return User - Returns the details of the accounts being searched
      */
 
+	@Path("/{AccountID}")
 	public Response getAccount(@PathParam("AccountID") long AccountID);
 	
+	@Path("/")
 	public Response createAccount(Account account);
 	
 	@GET

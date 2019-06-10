@@ -78,7 +78,7 @@ public class AccountResourceImpl implements AccountResource {
 		Account accountReturn = accountService.findById(AccountID);
 		if (accountReturn == null) {
 			System.out.println("accountreturn is null");
-			return Response.status(Response.Status.NOT_FOUND).entity("Account with ID " + AccountID + " not found").build();
+			return Response.status(Response.Status.NOT_FOUND).entity("{\"error\":\"Account with ID " + AccountID + " not found\"}").build();
 		}
 		Link link = Link.fromUri(baseUrl+ "/" + AccountID).rel("self").build();	
 		System.out.println(baseUrl + "/" + AccountID);
@@ -89,7 +89,7 @@ public class AccountResourceImpl implements AccountResource {
 	}
 	
 	@POST
-	@Path("/create")
+	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@ApiOperation(
@@ -104,7 +104,7 @@ public class AccountResourceImpl implements AccountResource {
 	public Response createAccount(Account account) {
 		if(accountService.isAccountExist(account))
 			return Response.status(Response.Status.CONFLICT)
-					.entity("Unable to create. A Account with given name already exist")
+					.entity("{\"error\":\"Unable to create. A Account with given name already exist\"}")
 					.build();
 		accountService.saveAccount(account);
 		return Response.status(Response.Status.CREATED).build();

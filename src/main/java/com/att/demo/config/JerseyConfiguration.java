@@ -29,7 +29,6 @@ import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 
-
 /**
  * This Class reads and sets all configuration related to Jersey
  * 
@@ -39,16 +38,16 @@ import io.swagger.jaxrs.listing.SwaggerSerializers;
 @ApplicationPath("/")
 public class JerseyConfiguration extends ResourceConfig {
 	private static final Logger log = Logger.getLogger("com.att.idp.logging.ServerLogger");
-	
-	 @Value("${spring.jersey.application-path}")
-	  private String apiPath;
-	
-    /**
-     * This method creates an objectmapper and sets configuration related
-     * to serialization 
-     * 
-     * @return objectMapper
-     */
+
+	@Value("${spring.jersey.application-path}")
+	private String apiPath;
+
+	/**
+	 * This method creates an objectmapper and sets configuration related to
+	 * serialization
+	 * 
+	 * @return objectMapper
+	 */
 	@Bean
 	@Primary
 	public ObjectMapper objectMapper() {
@@ -60,50 +59,48 @@ public class JerseyConfiguration extends ResourceConfig {
 		return objectMapper;
 	}
 
-
-    /**
-     * This is the main constructor which register the Jersey configs 
-     * 
-     */
+	/**
+	 * This is the main constructor which register the Jersey configs
+	 * 
+	 */
 	@Autowired
-    public JerseyConfiguration() {
-		register(AccountResourceImpl.class);	
+	public JerseyConfiguration() {
+		register(AccountResourceImpl.class);
 		register(AccountGetResource.class);
-		
-    }
-	
-		@PostConstruct
-	  public void init() {
-	    // Register components where DI is needed
-	    this.configureSwagger();
-	  }
-	
+
+	}
+
+	@PostConstruct
+	public void init() {
+		// Register components where DI is needed
+		this.configureSwagger();
+	}
+
 	private void configureSwagger() {
-	    // Available at localhost:port/api/swagger.json
-	    this.register(ApiListingResource.class);
-	    this.register(SwaggerSerializers.class);
+		// Available at localhost:port/api/swagger.json
+		this.register(ApiListingResource.class);
+		this.register(SwaggerSerializers.class);
 
-	    BeanConfig config = new BeanConfig();
-	    config.setConfigId("springboot-demo");
-	    config.setTitle("Swagger docs for Demo application");
-	    config.setVersion("v1");
-	    config.setContact("Ravi Bhusarapu");
-	    config.setSchemes(new String[] { "http", "https" });
-	    config.setBasePath(this.apiPath);
-	    config.setResourcePackage("com.att.demo.resource");
-	    config.setPrettyPrint(true);
-	    config.setScan(true);
-	  }
+		BeanConfig config = new BeanConfig();
+		config.setConfigId("springboot-demo");
+		config.setTitle("Swagger docs for Demo application");
+		config.setVersion("v1");
+		config.setContact("Ravi Bhusarapu");
+		config.setSchemes(new String[] { "http", "https" });
+		config.setBasePath(this.apiPath);
+		config.setResourcePackage("com.att.demo.resource");
+		config.setPrettyPrint(true);
+		config.setScan(true);
+	}
 
-    /**
-     * This method returns a REST client instance 
-     * 
-     * @return jerseyClient REST Client
-     * 
-     */
+	/**
+	 * This method returns a REST client instance
+	 * 
+	 * @return jerseyClient REST Client
+	 * 
+	 */
 	@Bean
 	public Client jerseyClient() {
-		return ClientBuilder.newClient(
-				new ClientConfig());
+		return ClientBuilder.newClient(new ClientConfig());
 	}
 }

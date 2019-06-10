@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.stereotype.Service;
+
+import com.att.demo.model.Account;
 import com.att.demo.model.User;
 
-public class UserServiceImpl {
+@Service("userService")
+public class UserServiceImpl implements UserService {
 private static final AtomicLong counter = new AtomicLong();
 	
 	private static List<User> users;
@@ -21,6 +25,20 @@ private static final AtomicLong counter = new AtomicLong();
 			}
 		}
 		return null;
+	}
+	
+	public void saveUser(User user) {
+		counter.incrementAndGet();
+		users.add(user);
+	}
+	
+	public boolean isUserExist(long userID) {
+		for(User user : users){
+			if(user.getId() == userID){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private static List<User> populateDummyUsers(){
